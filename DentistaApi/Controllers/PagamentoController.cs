@@ -20,10 +20,10 @@ public class PagamentoController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public ActionResult<Pagamento> GetById(string id)
+    public ActionResult<Pagamento> GetById(int id)
     {
 
-        var pagaPagamento = db.Pagamentos.FirstOrDefault(x => x.PagamentoId == id);
+        var pagaPagamento = db.Pagamentos.FirstOrDefault(x => x.Id == id);
 
         return pagaPagamento == null ? NotFound() : Ok(pagaPagamento);
     }
@@ -31,22 +31,22 @@ public class PagamentoController : ControllerBase
     [HttpPost]
     public ActionResult<Pagamento> Post(Pagamento obj)
     {
-        if (obj.PagamentoId == null)
-            obj.PagamentoId = Guid.NewGuid().ToString();
+        if (obj.Id == null)
+            obj.Id = int.Parse(Guid.NewGuid().ToString());
 
         db.Pagamentos.Add(obj);
         db.SaveChanges();
 
 
-        return CreatedAtAction(nameof(GetById), new { id = obj.PagamentoId }, obj);
+        return CreatedAtAction(nameof(GetById), new { id = obj.Id }, obj);
 
     }
 
     // PUT: api/Atleta/5
     [HttpPut("{id}")]
-    public IActionResult Put(string id, Pagamento obj)
+    public IActionResult Put(int id, Pagamento obj)
     {
-        if (id != obj.PagamentoId)
+        if (id != obj.Id)
             return BadRequest();
 
         db.Pagamentos.Update(obj);
@@ -57,12 +57,12 @@ public class PagamentoController : ControllerBase
 
     // DELETE: api/Atleta/5
     [HttpDelete("{id}")]
-    public IActionResult Delete(string id)
+    public IActionResult Delete(int id)
     {
         if (db.Pagamentos == null)
             return NotFound();
 
-        var obj = db.Pagamentos.FirstOrDefault(x => x.PagamentoId == id);
+        var obj = db.Pagamentos.FirstOrDefault(x => x.Id == id);
 
         if (obj == null)
             return NotFound();

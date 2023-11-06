@@ -20,10 +20,10 @@ public class ConsultaController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public ActionResult<Consulta> GetById(string id)
+    public ActionResult<Consulta> GetById(int id)
     {
 
-        var consulta = db.Consultas.FirstOrDefault(x => x.ConsultaId == id);
+        var consulta = db.Consultas.FirstOrDefault(x => x.Id == id);
 
         return consulta == null ? NotFound() : Ok(consulta);
     }
@@ -31,21 +31,20 @@ public class ConsultaController : ControllerBase
     [HttpPost]
     public ActionResult<Consulta> Post(Consulta obj)
     {
-        if (obj.ConsultaId == null)
-            obj.ConsultaId = Guid.NewGuid().ToString();
+        
 
         db.Consultas.Add(obj);
         db.SaveChanges();
 
 
-        return CreatedAtAction(nameof(GetById), new { id = obj.ConsultaId }, obj);
+        return CreatedAtAction(nameof(GetById), new { id = obj.Id }, obj);
 
     }
 
     [HttpPut("{id}")]
-    public IActionResult Put(string id, Consulta obj)
+    public IActionResult Put(int id, Consulta obj)
     {
-        if (id != obj.ConsultaId)
+        if (id != obj.Id)
             return BadRequest();
 
         db.Consultas.Update(obj);
@@ -55,12 +54,12 @@ public class ConsultaController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public IActionResult Delete(string id)
+    public IActionResult Delete(int id)
     {
         if (db.Consultas == null)
             return NotFound();
 
-        var obj = db.Consultas.FirstOrDefault(x => x.ConsultaId == id);
+        var obj = db.Consultas.FirstOrDefault(x => x.Id == id);
 
         if (obj == null)
             return NotFound();

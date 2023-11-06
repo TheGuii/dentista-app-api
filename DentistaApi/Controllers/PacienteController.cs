@@ -1,10 +1,12 @@
 using DentistaApi.Data;
 using DentistaApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DentistaApi.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("v1/[controller]")]
 public class PacienteController : ControllerBase
@@ -20,7 +22,7 @@ public class PacienteController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public ActionResult<Paciente> GetById(string id)
+    public ActionResult<Paciente> GetById(int id)
     {
 
         var paciPaciente = db.Pacientes.FirstOrDefault(x => x.Id == id);
@@ -31,8 +33,10 @@ public class PacienteController : ControllerBase
     [HttpPost]
     public ActionResult<Paciente> Post(Paciente obj)
     {
-        if (obj.Id == null)
-            obj.Id = Guid.NewGuid().ToString();
+        if (obj == null)
+            return BadRequest();
+        
+        obj.SetSenhaHash();
 
         db.Pacientes.Add(obj);
         db.SaveChanges();
@@ -43,7 +47,7 @@ public class PacienteController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult Put(string id, Paciente obj)
+    public IActionResult Put(int id, Paciente obj)
     {
         if (id != obj.Id)
             return BadRequest();
@@ -55,7 +59,7 @@ public class PacienteController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public IActionResult Delete(string id)
+    public IActionResult Delete(int id)
     {
         if (db.Pacientes == null)
             return NotFound();

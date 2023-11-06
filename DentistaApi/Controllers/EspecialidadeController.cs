@@ -20,10 +20,10 @@ public class EspecialidadeController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public ActionResult<Especialidade> GetById(string id)
+    public ActionResult<Especialidade> GetById(int id)
     {
 
-        var espEspecialidade = db.Especialidades.FirstOrDefault(x => x.EspecialidadeId == id);
+        var espEspecialidade = db.Especialidades.FirstOrDefault(x => x.Id == id);
 
         return espEspecialidade == null ? NotFound() : Ok(espEspecialidade);
     }
@@ -31,22 +31,18 @@ public class EspecialidadeController : ControllerBase
     [HttpPost]
     public ActionResult<Especialidade> Post(Especialidade obj)
     {
-        if (obj.EspecialidadeId == null)
-            obj.EspecialidadeId = Guid.NewGuid().ToString();
 
         db.Especialidades.Add(obj);
         db.SaveChanges();
 
-
-        return CreatedAtAction(nameof(GetById), new { id = obj.EspecialidadeId }, obj);
-
+        return CreatedAtAction(nameof(GetById), new { id = obj.Id }, obj);
     }
 
     // PUT: api/Atleta/5
     [HttpPut("{id}")]
-    public IActionResult Put(string id, Especialidade obj)
+    public IActionResult Put(int id, Especialidade obj)
     {
-        if (id != obj.EspecialidadeId)
+        if (id != obj.Id)
             return BadRequest();
 
         db.Especialidades.Update(obj);
@@ -57,12 +53,12 @@ public class EspecialidadeController : ControllerBase
 
     // DELETE: api/Atleta/5
     [HttpDelete("{id}")]
-    public IActionResult Delete(string id)
+    public IActionResult Delete(int id)
     {
         if (db.Especialidades == null)
             return NotFound();
 
-        var obj = db.Especialidades.FirstOrDefault(x => x.EspecialidadeId == id);
+        var obj = db.Especialidades.FirstOrDefault(x => x.Id == id);
 
         if (obj == null)
             return NotFound();

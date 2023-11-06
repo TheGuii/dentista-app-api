@@ -1,7 +1,14 @@
+using DentistaApi.Models.Utils;
+
 namespace DentistaApi.Models;
 
 public class UserInfo
 {
-    public string Email { get; set; } = "";
+    public string Login { get; set; } = "";
     public string Password { get; set; } = "";
+
+    public string GerarHash()
+    {
+        return Password.GerarHash();
+    }
 }

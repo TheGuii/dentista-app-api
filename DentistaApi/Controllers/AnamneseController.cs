@@ -20,7 +20,7 @@ public class AnamneseController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public ActionResult<Anamnese> GetById(string id)
+    public ActionResult<Anamnese> GetById(int id)
     {
 
         var anaAnamnese = db.Anamneses.FirstOrDefault(x => x.Id == id);
@@ -31,8 +31,7 @@ public class AnamneseController : ControllerBase
     [HttpPost]
     public ActionResult<Anamnese> Post(Anamnese obj)
     {
-        if (obj.Id == null)
-            obj.Id = Guid.NewGuid().ToString();
+        
 
         db.Anamneses.Add(obj);
         db.SaveChanges();
@@ -43,7 +42,7 @@ public class AnamneseController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult Put(string id, Anamnese obj)
+    public IActionResult Put(int id, Anamnese obj)
     {
         if (id != obj.Id)
             return BadRequest();
@@ -55,7 +54,7 @@ public class AnamneseController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public IActionResult Delete(string id)
+    public IActionResult Delete(int id)
     {
         if (db.Anamneses == null)
             return NotFound();

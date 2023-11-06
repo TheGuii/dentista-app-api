@@ -1,8 +1,13 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace DentistaApi.Models;
 
 public class Endereco
 {
-    public string? Id { get; set; }
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int? Id { get; set; }
     public string Rua { get; set; } = "";
     public string Bairro { get; set; } = "";
     public string Cidade { get; set; } = "";
@@ -10,6 +15,5 @@ public class Endereco
     public string Numero { get; set; } = "";
     public string Complemento { get; set; } = "";
     public string Referencia { get; set; } = "";
-    public string PacienteId { get; set; } = "";
-    public Paciente Paciente { get; set; } = null!;
+
 }

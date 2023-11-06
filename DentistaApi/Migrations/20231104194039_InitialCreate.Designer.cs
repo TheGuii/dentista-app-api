@@ -3,6 +3,7 @@ using System;
 using DentistaApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DentistaApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231104194039_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.13");
@@ -163,9 +166,6 @@ namespace DentistaApi.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("EspecialidadeId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Login")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -187,8 +187,6 @@ namespace DentistaApi.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EspecialidadeId");
 
                     b.ToTable("Dentistas");
                 });
@@ -578,7 +576,9 @@ namespace DentistaApi.Migrations
                 {
                     b.HasOne("DentistaApi.Models.Especialidade", "Especialidade")
                         .WithMany()
-                        .HasForeignKey("EspecialidadeId");
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Especialidade");
                 });

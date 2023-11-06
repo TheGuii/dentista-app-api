@@ -71,7 +71,7 @@ public class DentistaController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public ActionResult<Dentista> GetById(string id)
+    public ActionResult<Dentista> GetById(int id)
     {
 
         var dentDentista = db.Dentistas.FirstOrDefault(x => x.Id == id);
@@ -82,8 +82,8 @@ public class DentistaController : ControllerBase
     [HttpPost]
     public ActionResult<Dentista> Post(Dentista obj)
     {
-        if (obj.Id == null)
-            obj.Id = Guid.NewGuid().ToString();
+        obj.SetSenhaHash();
+
 
         db.Dentistas.Add(obj);
         db.SaveChanges();
@@ -94,7 +94,7 @@ public class DentistaController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult Put(string id, Dentista obj)
+    public IActionResult Put(int id, Dentista obj)
     {
         if (id != obj.Id)
             return BadRequest();
@@ -106,7 +106,7 @@ public class DentistaController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public IActionResult Delete(string id)
+    public IActionResult Delete(int id)
     {
         if (db.Dentistas == null)
             return NotFound();

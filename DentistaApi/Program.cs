@@ -13,7 +13,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppDbContext>();
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>()
+builder.Services
+    .AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
 builder.Services.Configure<IdentityOptions>(options =>
@@ -26,13 +28,12 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.SignIn.RequireConfirmedEmail = false;
 });
 
-builder.Services
-    .AddAuthentication(options =>
+builder.Services.AddAuthentication(options =>
     {
         options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
         options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    }) //Continua no próximo slide
+    }) 
     .AddJwtBearer(options =>
     {
         options.SaveToken = true;
@@ -41,11 +42,13 @@ builder.Services
         {
             ValidateIssuer = true,
             ValidateAudience = true,
-            ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
-            ValidAudience = builder.Configuration["JWT:ValidAudience"],
+            ValidIssuer = builder.Configuration["JWT:Issuer"],
+            ValidAudience = builder.Configuration["JWT:Audience"],
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"] ?? ""))
         };
     });
+
+
 
 
 builder.Services.AddScoped<IAuthService, AuthService>();

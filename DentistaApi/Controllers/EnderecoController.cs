@@ -20,7 +20,7 @@ public class EnderecoController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public ActionResult<Endereco> GetById(string id)
+    public ActionResult<Endereco> GetById(int id)
     {
 
         var enEndereco = db.Enderecos.FirstOrDefault(x => x.Id == id);
@@ -31,8 +31,7 @@ public class EnderecoController : ControllerBase
     [HttpPost]
     public ActionResult<Endereco> Post(Endereco obj)
     {
-        if (obj.Id == null)
-            obj.Id = Guid.NewGuid().ToString();
+
 
         db.Enderecos.Add(obj);
         db.SaveChanges();
@@ -43,7 +42,7 @@ public class EnderecoController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult Put(string id, Endereco obj)
+    public IActionResult Put(int id, Endereco obj)
     {
         if (id != obj.Id)
             return BadRequest();
@@ -55,7 +54,7 @@ public class EnderecoController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public IActionResult Delete(string id)
+    public IActionResult Delete(int id)
     {
         if (db.Enderecos == null)
             return NotFound();
