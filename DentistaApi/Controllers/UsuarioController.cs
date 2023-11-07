@@ -5,7 +5,7 @@ using DentistaApi.Services;
 using DentistaApi.Models;
 
 namespace AtletaBackend.Controllers;
-
+[Authorize]
 [Route("v1/[controller]")]
 [ApiController]
 public class UsuarioController : ControllerBase
