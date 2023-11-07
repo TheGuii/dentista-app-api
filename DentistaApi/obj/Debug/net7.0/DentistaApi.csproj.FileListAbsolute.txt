@@ -166,3 +166,13 @@ C:\Users\Guilherme\Desktop\Facul\4periodo\dentista-app-api-main\DentistaApi\bin\
 C:\Users\Guilherme\Desktop\Facul\4periodo\dentista-app-api-main\DentistaApi\bin\Debug\net7.0\System.Security.Permissions.dll
 C:\Users\Guilherme\Desktop\Facul\4periodo\dentista-app-api-main\DentistaApi\bin\Debug\net7.0\Json.Net.dll
 C:\Users\Guilherme\Desktop\Facul\4periodo\dentista-app-api-main\DentistaApi\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\Guilherme\Desktop\Facul\dentista-app-api\DentistaApi\obj\Debug\net7.0\DentistaApi.csproj.AssemblyReference.cache
+C:\Users\Guilherme\Desktop\Facul\dentista-app-api\DentistaApi\obj\Debug\net7.0\DentistaApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Guilherme\Desktop\Facul\dentista-app-api\DentistaApi\obj\Debug\net7.0\DentistaApi.AssemblyInfoInputs.cache
+C:\Users\Guilherme\Desktop\Facul\dentista-app-api\DentistaApi\obj\Debug\net7.0\DentistaApi.AssemblyInfo.cs
+C:\Users\Guilherme\Desktop\Facul\dentista-app-api\DentistaApi\obj\Debug\net7.0\DentistaApi.csproj.CoreCompileInputs.cache
+C:\Users\Guilherme\Desktop\Facul\dentista-app-api\DentistaApi\obj\Debug\net7.0\DentistaApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Guilherme\Desktop\Facul\dentista-app-api\DentistaApi\obj\Debug\net7.0\DentistaApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Guilherme\Desktop\Facul\dentista-app-api\DentistaApi\obj\Debug\net7.0\DentistaApi.dll
+C:\Users\Guilherme\Desktop\Facul\dentista-app-api\DentistaApi\obj\Debug\net7.0\refint\DentistaApi.dll
+C:\Users\Guilherme\Desktop\Facul\dentista-app-api\DentistaApi\obj\Debug\net7.0\DentistaApi.pdb

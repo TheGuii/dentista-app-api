@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using DentistaApi.Services;
 
 namespace DentistaApi.Controllers;
-
+[Authorize]
 [ApiController]
 [Route("v1/[controller]")]
 public class DentistaController : ControllerBase

@@ -1,10 +1,11 @@
 using DentistaApi.Data;
 using DentistaApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DentistaApi.Controllers;
-
+[Authorize]
 [ApiController]
 [Route("v1/[controller]")]
 public class PagamentoController : ControllerBase

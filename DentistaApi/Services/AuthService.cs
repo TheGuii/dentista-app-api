@@ -106,7 +106,7 @@ public class AuthService : IAuthService{
         var tokenHandler = new JwtSecurityTokenHandler();
         var claims = new[]
         {
-            new Claim(ClaimTypes.Name, usuario.Nome),
+            new Claim(ClaimTypes.Name, usuario),
             new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
         };
         var token = tokenHandler.CreateToken(GetTokenDescriptor(claims));

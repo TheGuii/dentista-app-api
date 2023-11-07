@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DentistaApi.Controllers;
 
-
+[Authorize]
 [ApiController]
 [Route("v1/[controller]")]
 public class PacienteController : ControllerBase
